@@ -1,0 +1,38 @@
+import com.kms.katalon.core.annotation.Keyword
+
+class LoginSteps {
+    @Keyword
+    def givenTheUserIsOnTheLoginScreen() {
+        // Implement code to navigate to the login screen
+    }
+
+    @Keyword
+    def whenTheUserEntersValidCredentials() {
+        // Implement code to enter valid credentials
+        TestObject usernameField = findTestObject('your-username-testobject-id')
+        TestObject passwordField = findTestObject('your-password-testobject-id')
+
+        // Input the username and password
+        Mobile.setText(usernameField, username)
+        Mobile.setText(passwordField, password)
+    }
+
+    @Keyword
+    def andClicksTheLoginButton() {
+        // Implement code to click the login button
+    }
+
+    @Keyword
+    def thenTheUserShouldBeLoggedInSuccessfully() {
+        // Implement code to verify successful login
+        // Define a TestObject that represents an element indicating successful login
+        TestObject successMessage = findTestObject('your-success-message-testobject-id')
+
+        // Wait for the success message to appear (adjust the timeout as needed)
+        Mobile.waitForElementVisible(successMessage, 10)
+
+        // Verify that the success message is displayed
+        boolean isDisplayed = Mobile.verifyElementPresent(successMessage, 5)
+        Assert.assertTrue("Successful login message is displayed.", isDisplayed)
+    }
+}
