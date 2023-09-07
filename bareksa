@@ -1,16 +1,19 @@
 import com.kms.katalon.core.annotation.Keyword
+import com.kms.katalon.core.testobject.TestObject
+import com.kms.katalon.core.mobile.keyword.MobileBuiltInKeywords as Mobile
 
 class LoginSteps {
     @Keyword
     def givenTheUserIsOnTheLoginScreen() {
         // Implement code to navigate to the login screen
+        TestObject loginField = findTestObject('com.bareksa.app:id/tv_title')
     }
 
     @Keyword
     def whenTheUserEntersValidCredentials() {
         // Implement code to enter valid credentials
-        TestObject usernameField = findTestObject('your-username-testobject-id')
-        TestObject passwordField = findTestObject('your-password-testobject-id')
+        TestObject emailField = findTestObject('com.bareksa.app:id/edit_text_group')
+        TestObject passwordField = findTestObject('com.bareksa.app:id/edit_text_group')
 
         // Input the username and password
         Mobile.setText(usernameField, username)
@@ -19,20 +22,38 @@ class LoginSteps {
 
     @Keyword
     def andClicksTheLoginButton() {
-        // Implement code to click the login button
+        // Define a TestObject that represents the login button
+        TestObject loginButton = findTestObject('com.bareksa.app:id/bt_login')
+
+        // Click the login button
+        Mobile.tap(loginButton)
     }
 
     @Keyword
-    def thenTheUserShouldBeLoggedInSuccessfully() {
-        // Implement code to verify successful login
-        // Define a TestObject that represents an element indicating successful login
-        TestObject successMessage = findTestObject('your-success-message-testobject-id')
+    def andUserEnterValidOTP(String otp) {
+        // Define a TestObject that represents the OTP input field
+        TestObject otpField = findTestObject('com.bareksa.app:id/otp_char_1_id')
 
-        // Wait for the success message to appear (adjust the timeout as needed)
-        Mobile.waitForElementVisible(successMessage, 10)
+        // Input the OTP
+        Mobile.setText(otpField, otp)
+    }
 
-        // Verify that the success message is displayed
-        boolean isDisplayed = Mobile.verifyElementPresent(successMessage, 5)
-        Assert.assertTrue("Successful login message is displayed.", isDisplayed)
+    @Keyword
+    def andUserEnterValidPIN(String pin) {
+        // Define a TestObject that represents the PIN input field
+        TestObject pinField = findTestObject('com.bareksa.app:id/input1')
+
+        // Input the PIN
+        Mobile.setText(pinField, pin)
+        
+        // Wait for direct landing page (adjust the timeout as needed)
+        Mobile.waitForElementVisible(successMessage, 5)
+    }
+
+    @Keyword
+    def thenTheUsershouldseelandingScreen() {
+        // Implement code to navigate to the landing screen
+        TestObject Image = findTestObject('com.bareksa.app:id/icl_toolbar')
+        TestObject Image = findTestObject('com.bareksa.app:id/iv_loyalty_badge')
     }
 }
